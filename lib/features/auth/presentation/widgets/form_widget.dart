@@ -1,5 +1,7 @@
+import 'package:bloc_testing/features/auth/bloc/auth_bloc.dart';
 import 'package:bloc_testing/features/home/presentation/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CusForm extends StatefulWidget {
   const CusForm({super.key});
@@ -46,11 +48,11 @@ class _CusFormState extends State<CusForm> {
 
               ElevatedButton(
                 onPressed: () {
-                  //
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Home()),
+                  context.read<AuthBloc>().add(
+                    LoginRequested(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                    ),
                   );
                 },
                 child: const Text('Login'),

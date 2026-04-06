@@ -1,3 +1,4 @@
+import 'package:bloc_testing/features/auth/presentation/screen/login_screen.dart';
 import 'package:bloc_testing/features/home/presentation/screens/home.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => Home()),
+      MaterialPageRoute(builder: (context) => LoginScreen()),
       (context) => false,
     );
   }

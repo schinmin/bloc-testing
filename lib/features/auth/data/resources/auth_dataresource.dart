@@ -17,12 +17,12 @@ class AuthDataresource {
       );
       debugPrint('Login response: ${response.data}');
       return UserModel(
-        id: response.data['id'],
-        company: response.data['company'],
-        address: response.data['address'],
+        id: response.data['id'] ?? 0,
+        company: response.data['company'] ?? "",
+        address: response.data['address'] ?? "",
         email: email,
         name: 'John Doe',
-        token: response.data['token'],
+        token: response.data['token'] ?? "",
       );
     } catch (e) {
       debugPrint('Login failed: $e');
