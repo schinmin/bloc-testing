@@ -1,3 +1,4 @@
+import 'package:bloc_testing/features/companylist/presentation/screen/companies_list.dart';
 import 'package:bloc_testing/features/home/bloc/home_bloc.dart';
 import 'package:bloc_testing/features/userlist/presentation/userlist_page.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +85,7 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-              icon: const Icon(Icons.home),
+              icon: const Icon(Icons.person),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -95,7 +96,7 @@ class _HomeState extends State<Home> {
               },
             ),
             IconButton(
-              icon: const Icon(Icons.person),
+              icon: const Icon(Icons.home),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -105,8 +106,12 @@ class _HomeState extends State<Home> {
               },
             ),
             IconButton(
-              icon: const Icon(Icons.settings),
+              icon: const Icon(Icons.crop_original_outlined),
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CompaniesList()),
+                );
                 // Handle settings button press
               },
             ),

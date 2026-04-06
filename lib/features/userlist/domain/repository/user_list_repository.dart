@@ -18,7 +18,7 @@ class UserListRepositoryImpl extends UserListRepository {
       final response = await dio.get("${ApiConstants.baseUrl}/users");
 
       if (response.statusCode! <= 300) {
-        final data = response.data['data'] as List;
+        final data = response.data as List;
         final users = data.map((json) => UserModel.fromJson(json)).toList();
         return Right(users);
       } else {
