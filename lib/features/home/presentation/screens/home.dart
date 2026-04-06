@@ -37,9 +37,48 @@ class _HomeState extends State<Home> {
             return const Center(child: CircularProgressIndicator());
           } else if (state is HomeSuccess) {
             return Center(
-              child: Text(
-                'Welcome ${state.user.name}',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              child: Column(
+                children: [
+                  SizedBox(height: 30),
+                  ClipOval(
+                    child: CircleAvatar(radius: 50, child: Icon(Icons.person)),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Welcome ${state.user.name}',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(
+                        "Email",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      trailing: Text(state.user.email),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(
+                        "Address",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      trailing: Text(state.user.address),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(
+                        "Company",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      trailing: Text(state.user.company),
+                    ),
+                  ),
+                ],
               ),
             );
           }
