@@ -1,5 +1,4 @@
 import 'package:bloc_testing/features/auth/bloc/auth_bloc.dart';
-import 'package:bloc_testing/features/home/presentation/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,43 +20,63 @@ class _CusFormState extends State<CusForm> {
       child: Form(
         key: _formKey,
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextFormField(
-                controller: emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: passwordController,
-                decoration: const InputDecoration(labelText: 'Password'),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  return null;
-                },
-              ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: passwordController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                  ),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
+                ),
 
-              ElevatedButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(
-                    LoginRequested(
-                      email: emailController.text.trim(),
-                      password: passwordController.text.trim(),
+                const SizedBox(height: 30),
+
+                SizedBox(
+                  width: 200,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      textStyle: WidgetStatePropertyAll(
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
                     ),
-                  );
-                },
-                child: const Text('Login'),
-              ),
-            ],
+                    onPressed: () {
+                      context.read<AuthBloc>().add(
+                        LoginRequested(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        ),
+                      );
+                    },
+                    child: const Text('Login'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

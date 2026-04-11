@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bloc_testing/features/auth/bloc/auth_bloc.dart';
 import 'package:bloc_testing/features/auth/presentation/widgets/form_widget.dart';
 import 'package:bloc_testing/features/home/presentation/screens/home.dart';
@@ -10,7 +12,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login Screen')),
+      appBar: AppBar(centerTitle: true, title: const Text('Login Screen')),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthFailure) {
@@ -38,7 +40,20 @@ class LoginScreen extends StatelessWidget {
             return Center(child: Text('Welcome ${state.user.name}'));
           }
 
-          return CusForm();
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  "Login",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(height: 20),
+                Text("Start your new experience."),
+                const SizedBox(height: 20),
+                CusForm(),
+              ],
+            ),
+          );
         },
       ),
     );

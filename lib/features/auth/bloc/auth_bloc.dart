@@ -22,7 +22,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
   }
 
-  _handleLogin(LoginRequested event, Emitter<AuthState> emit) async {
+  Future<void> _handleLogin(
+    LoginRequested event,
+    Emitter<AuthState> emit,
+  ) async {
     emit(AuthLoading());
     final result = await authUsecase.login(event.email, event.password);
 
@@ -33,7 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  _handleLogout(Emitter<AuthState> emit) async {
+  Future<void> _handleLogout(Emitter<AuthState> emit) async {
     emit(AuthLoading());
     final result = await authUsecase.logout();
     result.fold(
